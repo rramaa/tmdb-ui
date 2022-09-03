@@ -1,0 +1,33 @@
+{
+  "name": "movie-database",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:rramaa/tmdb-ui.git",
+  "author": "Ramakrishna <ramakrishna@mindtickle.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.2.5",
+    "dotenv": "^16.0.2",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "webpack": "^5.74.0",
+    "webpack-manifest-plugin": "^5.0.0"
+  },
+  "scripts": {
+    "start-client:dev": "NODE_ENV=development webpack-dev-server",
+    "start-server:dev": "NODE_ENV=development node --inspect -r ./helpers/babel-register.js ./server/devServer.js"
+  },
+  "devDependencies": {
+    "@babel/register": "^7.18.9",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-middleware": "^5.3.3",
+    "webpack-dev-server": "^4.10.1",
+    "webpack-hot-middleware": "^2.25.2"
+  }
+}
