@@ -4,7 +4,7 @@ import Image from "../Image";
 
 const IMAGE_WIDTH = 504
 
-export default function Carousel({items, title, baseRoute}) {
+export default function Carousel({items, title}) {
     let [translate, updateTranslate] = React.useState(0)
     React.useEffect(() => {
         if(items.length <= window.innerWidth / IMAGE_WIDTH) {
@@ -30,7 +30,7 @@ export default function Carousel({items, title, baseRoute}) {
         <div className={"carousel"}>
             <h3>{title}</h3>
             <div className={"carousel-inner"} style={{transform: `translateX(-${translate}px)`}}>
-                {items.map(v => <CarouselItem baseRoute={baseRoute} key={v.id} {...v} />)}
+                {items.map(v => <CarouselItem key={v.id} {...v} />)}
             </div>
         </div>
     )

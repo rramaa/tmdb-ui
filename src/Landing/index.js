@@ -8,9 +8,9 @@ export default function Landing() {
     let {data: personList} = fetchApi("https://api.themoviedb.org/3/person/popular")
     return (
         <>
-            <Carousel items={moviesList?.results?.map(v => ({id: v.id, image: v.backdrop_path, title: v.title})) ?? []} baseRoute={"movie"} title="Popular Movies" />
-            <Carousel items={tvList?.results?.map(v => ({id: v.id, image: v.backdrop_path, title: v.name})) ?? []} baseRoute={"tv-series"} title="Popular TV Shows" />
-            <Carousel items={personList?.results?.map(v => ({id: v.id, image: v.profile_path, title: v.name})) ?? []} baseRoute={"person"} title="Popular People" />
+            <Carousel items={moviesList?.results?.map(v => ({id: v.id, image: v.backdrop_path, title: v.title, baseRoute: "movie"})) ?? []}  title="Popular Movies" />
+            <Carousel items={tvList?.results?.map(v => ({id: v.id, image: v.backdrop_path, title: v.name, baseRoute: "tv-series"})) ?? []} title="Popular TV Shows" />
+            <Carousel items={personList?.results?.map(v => ({id: v.id, image: v.profile_path, title: v.name, baseRoute: "person"})) ?? []} title="Popular People" />
         </>
     )
 }

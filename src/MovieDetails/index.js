@@ -20,7 +20,7 @@ export default function MovieDetails() {
                 <h3>{data.overview}</h3>
             </div>
         </div>
-        {!similarLoading && similarMovies?.results?.length > 0 && <Carousel items={similarMovies.results.map(v => ({id: v.id, image: v.backdrop_path, title: v.title}))} title={`Similar Movies to ${data.title}`} baseRoute={"/movie"} />}
+        {!similarLoading && similarMovies?.results?.length > 0 && <Carousel items={similarMovies.results.map(v => ({id: v.id, image: v.backdrop_path, title: v.title, baseRoute: "/movie"}))} title={`Similar Movies to ${data.title}`} />}
     </div>
 }
 
