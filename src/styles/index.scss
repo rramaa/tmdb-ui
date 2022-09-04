@@ -1,0 +1,24 @@
+@import "../Header/index";
+@import "../Carousel/index";
+
+* {
+  box-sizing: border-box;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.details-main-wrapper {
+  display: flex;
+  flex-flow: nowrap;
+  overflow: hidden;
+}
+.details-img {
+  padding: 10px;
+  width: 40vw;
+}
+.details-overview {
+  padding: 10px;
+}

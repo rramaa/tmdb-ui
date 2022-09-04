@@ -1,26 +1,39 @@
 import App from "../src"
 import {renderToString} from "react-dom/server"
 import {StaticRouter} from "react-router-dom/server";
+import {FetcherServerProvider} from "../src/Fetcher";
 import IndexView from "./views"
+import nodeFetch from "node-fetch-commonjs"
 
-export function renderMarkup(path) {
+export async function renderMarkup(path) {
     const routerContext = {}
+    const apiCache = {}
     const renderTree = (
-        <StaticRouter location={path} context={routerContext}>
-            <App/>
-        </StaticRouter>
+        <FetcherServerProvider fetcher={nodeFetch} cache={apiCache}>
+            <StaticRouter location={path} context={routerContext}>
+                <App/>
+            </StaticRouter>
+        </FetcherServerProvider>
     )
-    console.log(routerContext)
-    return renderToString(
-        renderTree
-    )
+    renderToString(renderTree)
+    await Promise.all(Object.values(apiCache))
+    return {
+        markup: renderToString(
+            <FetcherServerProvider fetcher={nodeFetch} cache={apiCache}>
+                <StaticRouter location={path} context={routerContext}>
+                    <App/>
+                </StaticRouter>
+            </FetcherServerProvider>
+        ),
+        cache: apiCache
+    }
 }
 
-export function renderApp(res, {markup, manifest, entryPoints}) {
+export function renderApp(res, {markup, manifest, entryPoints, cache}) {
     const jsFiles = entryPoints.map(v => {
         return manifest[`${v}.js`]
     })
-    const finalMarkup = renderToString(<IndexView markup={markup} jsFiles={jsFiles} />)
+    const finalMarkup = renderToString(<IndexView markup={markup} jsFiles={jsFiles} cache={JSON.stringify(cache)} />)
     res.header("Content-Type", "text/html; charset=utf-8")
     return res.send(finalMarkup)
 }

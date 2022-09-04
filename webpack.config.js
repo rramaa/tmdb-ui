@@ -2,14 +2,19 @@ const path = require('path');
 const {WebpackManifestPlugin} = require("webpack-manifest-plugin");
 const isDevEnv = process.env.NODE_ENV === "development";
 const distPath = path.resolve(__dirname, './dist');
-const srcPath = path.resolve(__dirname, './client');
+const clientPath = path.resolve(__dirname, './client');
+const srcPath = path.resolve(__dirname, './src');
 require("dotenv").config()
+
+const stylePath = path.join(srcPath, "./styles/index.scss")
 
 module.exports = {
     mode: isDevEnv ? "development" : "production",
-    context: srcPath,
+    context: clientPath,
+    devtool: "source-map",
     entry: {
-        app: isDevEnv ? ["webpack-hot-middleware/client", "./index.js"]: "./index.js"
+        app: isDevEnv ? ["webpack-hot-middleware/client", "./index.js"]: ["./index.js"],
+        styles: stylePath
     },
     devServer: {
         port: process.env.DEV_SERVER_PORT
@@ -26,6 +31,10 @@ module.exports = {
             use: {
                 loader: "babel-loader",
             }
+        }, {
+            test: /\.?scss$/,
+            exclude: /node_modules/,
+            use: ["style-loader", "css-loader", "sass-loader"]
         }]
     }
 }

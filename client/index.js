@@ -2,12 +2,15 @@ import ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom";
 
 import App from "../src"
+import {FetcherClientProvider} from "../src/Fetcher";
 
 function Application() {
     return (
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <FetcherClientProvider cache={window.__INTERNAL_DATA_CACHE__} >
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </FetcherClientProvider>
     )
 }
 

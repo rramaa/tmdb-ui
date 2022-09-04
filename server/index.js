@@ -5,9 +5,9 @@ let app = express()
 
 export function create({manifest, entry}) {
     const entryPoints = Object.keys(entry)
-    app.get("*", (req, res) => {
-        const markup = renderMarkup(req.path)
-        return renderApp(res, {markup, manifest, entryPoints})
+    app.get("*", async (req, res) => {
+        const {markup, cache} = await renderMarkup(req.path)
+        return renderApp(res, {markup, manifest, entryPoints, cache})
     })
     return app
 }
