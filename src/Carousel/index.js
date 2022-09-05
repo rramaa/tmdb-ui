@@ -5,6 +5,7 @@ import Image from "../Image";
 const IMAGE_WIDTH = 504
 
 export default function Carousel({items, title}) {
+    items = items.filter(v => v.image)
     let [translate, updateTranslate] = React.useState(0)
     React.useEffect(() => {
         if(items.length <= window.innerWidth / IMAGE_WIDTH) {

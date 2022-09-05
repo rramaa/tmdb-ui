@@ -1,6 +1,7 @@
 @import "../Header/index";
 @import "../Carousel/index";
 @import "../Person/index";
+@import "../Wishlist/index";
 
 * {
   box-sizing: border-box;
@@ -22,4 +23,13 @@ a, a:visited {
 }
 .details-overview {
   padding: 10px;
+}
+.details-title {
+  display: flex;
+  align-items: center;
+}
+
+.details-title .wishlist {
+  padding: 4px;
+  cursor: pointer;
 }

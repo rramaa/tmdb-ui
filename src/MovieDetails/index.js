@@ -2,6 +2,7 @@ import {useParams} from "react-router-dom";
 import Image from "../Image";
 import {useFetcher} from "../Fetcher";
 import Carousel from "../Carousel";
+import WishlistButton from "../Wishlist/button";
 
 export default function MovieDetails() {
     let {id} = useParams()
@@ -15,8 +16,10 @@ export default function MovieDetails() {
         <div className={"details-main-wrapper"}>
             <Image size={"original"} alt={data.title} imagePath={data.backdrop_path} className={"details-img"} />
             <div className={"details-overview"}>
-                <h2>{data.title}</h2>
-                <button>Add to wishlist</button>
+                <div className={"details-title"}>
+                    <h2>{data.title}</h2>
+                    <WishlistButton className={"wishlist"} id={data.id} type={"movie"} />
+                </div>
                 <h3>{data.overview}</h3>
             </div>
         </div>

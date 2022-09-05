@@ -2,6 +2,7 @@ import {useParams} from "react-router-dom";
 import Image from "../Image";
 import {useFetcher} from "../Fetcher";
 import Carousel from "../Carousel";
+import WishlistButton from "../Wishlist/button";
 
 export default function MovieDetails() {
     let {id} = useParams()
@@ -16,7 +17,7 @@ export default function MovieDetails() {
             <Image size={"original"} alt={data.name} imagePath={data.profile_path} className={"details-img people"} />
             <div className={"details-overview"}>
                 <h2>{data.name}</h2>
-                <button>Add to wishlist</button>
+                <WishlistButton id={data.id} type={"person"} />
                 <h3>Known for {data.known_for_department}</h3>
             </div>
         </div>
@@ -27,7 +28,7 @@ export default function MovieDetails() {
                     image: v.backdrop_path,
                     id: v.id,
                     title: v.original_title,
-                    baseRoute: v.media_type === "movie" ? "/movie" : "/tv-series"
+                    baseRoute: v.media_type === "movie" ? "/movie" : "/tv"
                 }
             })}
         />}
