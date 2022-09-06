@@ -29,6 +29,7 @@
     "webpack-manifest-plugin": "^5.0.0"
   },
   "scripts": {
+    "sanitize": "eslint ./client/**/*.js ./server/**/*.js ./src/**/*.js babel.config.js webpack.config.js ./helpers/**/*.js --fix && prettier ./client/**/*.js ./server/**/*.js ./src/**/*.js ./helpers/**/*.js babel.config.js webpack.config.js --write ",
     "start-client:dev": "NODE_ENV=development webpack-dev-server",
     "start-server:dev": "NODE_ENV=development node --inspect -r ./helpers/babel-register.js ./server/devServer.js"
   },
