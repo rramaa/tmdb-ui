@@ -29,10 +29,8 @@ export async function renderMarkup(path) {
     }
 }
 
-export function renderApp(res, {markup, manifest, cache}) {
-    const jsFiles = [manifest["app.js"]]
-    const cssFiles = [manifest["styles.css"]]
-    const finalMarkup = renderToString(<IndexView markup={markup} jsFiles={jsFiles} cache={JSON.stringify(cache)} cssFiles={cssFiles} />)
+export function renderApp(res, {markup, manifest, cache, cssFiles, jsFiles}) {
+    const finalMarkup = renderToString(<IndexView markup={markup} manifest={manifest} jsFiles={jsFiles} cache={JSON.stringify(cache)} cssFiles={cssFiles} />)
     res.header("Content-Type", "text/html; charset=utf-8")
     return res.send(finalMarkup)
 }

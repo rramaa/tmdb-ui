@@ -3,6 +3,7 @@ import {getWishlist} from "./utils";
 import {useFetcher} from "../Fetcher";
 import Image from "../Image";
 import {Link} from "react-router-dom";
+import Loader from "../Loader";
 
 export default function Wishlist() {
     let [wishlist, updateWishlist] = React.useState(null)
@@ -16,7 +17,7 @@ export default function Wishlist() {
         })
     }, [])
     if(!wishlist) {
-        return "Loading Wishlist"
+        return <Loader />
     }
     return (
         <>
@@ -45,7 +46,7 @@ function WishlistItem({id, type}) {
     let {data} = fetchApi(`https://api.themoviedb.org/3/${type}/${id}`)
     if(data) {
         return <div className={"wl-item"}>
-            <Link to={`/${type}/${id}`}>
+            <Link to={`/details/${type}/${id}`}>
                 <h3>{data.title || data.name}</h3>
                 <Image size={"w500"} imagePath={data.backdrop_path || data.profile_path} alt={data.title || data.name} />
             </Link>

@@ -3,6 +3,7 @@ import Image from "../Image";
 import {useFetcher} from "../Fetcher";
 import Carousel from "../Carousel";
 import WishlistButton from "../Wishlist/button";
+import Loader from "../Loader";
 
 export default function MovieDetails() {
     let {id} = useParams()
@@ -10,7 +11,7 @@ export default function MovieDetails() {
     let {data, loading} = fetchApi(`https://api.themoviedb.org/3/movie/${id}`)
     let {data: similarMovies, loading: similarLoading} = fetchApi(`https://api.themoviedb.org/3/movie/${id}/similar`, {clientOnly: true})
     if(loading) {
-        return "Loading"
+        return <Loader />
     }
     return <div className={"details-wrapper"}>
         <div className={"details-main-wrapper"}>
@@ -23,7 +24,7 @@ export default function MovieDetails() {
                 <h3>{data.overview}</h3>
             </div>
         </div>
-        {!similarLoading && similarMovies?.results?.length > 0 && <Carousel items={similarMovies.results.map(v => ({id: v.id, image: v.backdrop_path, title: v.title, baseRoute: "/movie"}))} title={`Similar Movies to ${data.title}`} />}
+        {!similarLoading && similarMovies?.results?.length > 0 && <Carousel items={similarMovies.results.map(v => ({id: v.id, image: v.backdrop_path, title: v.title, baseRoute: "/details/movie"}))} title={`Similar Movies to ${data.title}`} />}
     </div>
 }
 

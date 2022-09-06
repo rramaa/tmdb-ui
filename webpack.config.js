@@ -18,7 +18,7 @@ module.exports = {
         "styles/index": path.join(stylePath, "index.scss"),
         "styles/details": path.join(stylePath, "details.scss"),
         "styles/wishlist": path.join(stylePath, "wishlist.scss"),
-        "styles/landing": path.join(stylePath, "wishlist.scss"),
+        "styles/landing": path.join(stylePath, "landing.scss"),
     },
     devServer: {
         port: process.env.DEV_SERVER_PORT

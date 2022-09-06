@@ -3,14 +3,15 @@ import Image from "../Image";
 import {useFetcher} from "../Fetcher";
 import Carousel from "../Carousel";
 import WishlistButton from "../Wishlist/button";
+import Loader from "../Loader";
 
-export default function MovieDetails() {
+function PersonDetails() {
     let {id} = useParams()
     let fetchApi = useFetcher()
     let {data, loading} = fetchApi(`https://api.themoviedb.org/3/person/${id}`)
     let {data: credits, loading: creditsLoading} = fetchApi(`https://api.themoviedb.org/3/person/${id}/combined_credits`, {clientOnly: true})
     if(loading) {
-        return "Loading"
+        return <Loader />
     }
     return <div className={"details-wrapper"}>
         <div className={"details-main-wrapper"}>
@@ -30,10 +31,11 @@ export default function MovieDetails() {
                     image: v.backdrop_path,
                     id: v.id,
                     title: v.original_title,
-                    baseRoute: v.media_type === "movie" ? "/movie" : "/tv"
+                    baseRoute: v.media_type === "movie" ? "/details/movie" : "/details/tv"
                 }
             })}
         />}
     </div>
 }
 
+export default PersonDetails
