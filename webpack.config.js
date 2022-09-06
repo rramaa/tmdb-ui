@@ -23,11 +23,11 @@ module.exports = {
     "styles/landing": path.join(stylePath, "landing.scss"),
   },
   devServer: {
-    port: process.env.DEV_SERVER_PORT,
+    port: process.env.CLIENT_PORT,
   },
   output: {
     path: distPath,
-    publicPath: `http://localhost:${process.env.DEV_SERVER_PORT}/`,
+    publicPath: `http://localhost:${process.env.CLIENT_PORT}/`,
   },
   plugins: [
     new WebpackManifestPlugin({ writeToFileEmit: true }),

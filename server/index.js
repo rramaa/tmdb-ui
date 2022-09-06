@@ -46,7 +46,7 @@ export function create({ manifest, entry }) {
 }
 
 export function start() {
-  app.listen(process.env.PORT, () => {
-    console.log(`Started server on port ${process.env.PORT}`);
+  app.listen(process.env.SERVER_PORT, () => {
+    console.log(`Started server on port ${process.env.SERVER_PORT}`);
   });
 }
