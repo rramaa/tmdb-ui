@@ -1,3 +1,30 @@
 {
-  "extends": ["react-app", "prettier"]
+  "extends": ["react-app", "prettier"],
+  "overrides": [
+    {
+      "files": ["server/**/*.js"],
+      "env": {
+        "node": true
+      }
+    },
+    {
+      "files": ["client/**/*.js"],
+      "globals": {
+        "__LOADED_CSS__": "readonly",
+        "__INTERNAL_DATA_CACHE__": "readonly"
+      },
+      "env": {
+        "browser": true
+      }
+    },
+    {
+      "files": ["client/**/*.js"],
+      "env": {
+        "shared-node-browser": true
+      }
+    }
+  ],
+  "env": {
+    "node": true
+  }
 }
