@@ -1,0 +1,24 @@
+@import "../Person/index";
+@import "../Wishlist/index";
+
+.details-main-wrapper {
+  display: flex;
+  flex-flow: nowrap;
+  overflow: hidden;
+}
+.details-img {
+  padding: 10px;
+  width: 40vw;
+}
+.details-overview {
+  padding: 10px;
+}
+.details-title {
+  display: flex;
+  align-items: center;
+}
+
+.details-title .wishlist {
+  padding: 4px;
+  cursor: pointer;
+}

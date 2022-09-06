@@ -16,8 +16,10 @@ export default function MovieDetails() {
         <div className={"details-main-wrapper"}>
             <Image size={"original"} alt={data.name} imagePath={data.profile_path} className={"details-img people"} />
             <div className={"details-overview"}>
-                <h2>{data.name}</h2>
-                <WishlistButton id={data.id} type={"person"} />
+                <div className={"details-title"}>
+                    <h2>{data.name}</h2>
+                    <WishlistButton className={"wishlist"} id={data.id} type={"person"} />
+                </div>
                 <h3>Known for {data.known_for_department}</h3>
             </div>
         </div>

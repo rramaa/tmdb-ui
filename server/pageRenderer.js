@@ -29,11 +29,10 @@ export async function renderMarkup(path) {
     }
 }
 
-export function renderApp(res, {markup, manifest, entryPoints, cache}) {
-    const jsFiles = entryPoints.map(v => {
-        return manifest[`${v}.js`]
-    })
-    const finalMarkup = renderToString(<IndexView markup={markup} jsFiles={jsFiles} cache={JSON.stringify(cache)} />)
+export function renderApp(res, {markup, manifest, cache}) {
+    const jsFiles = [manifest["app.js"]]
+    const cssFiles = [manifest["styles.css"]]
+    const finalMarkup = renderToString(<IndexView markup={markup} jsFiles={jsFiles} cache={JSON.stringify(cache)} cssFiles={cssFiles} />)
     res.header("Content-Type", "text/html; charset=utf-8")
     return res.send(finalMarkup)
 }

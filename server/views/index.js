@@ -1,8 +1,11 @@
-export default function HTML({markup, jsFiles, cache}) {
+export default function HTML({markup, jsFiles, cache, cssFiles}) {
     return (
         <html>
             <head>
                 <title>TMDB</title>
+                {
+                    cssFiles.map(v => <link key={v} rel={"stylesheet"} href={v}/>)
+                }
             </head>
             <body>
                 <div id="root" dangerouslySetInnerHTML={{__html: markup}}/>
