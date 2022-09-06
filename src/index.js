@@ -1,7 +1,6 @@
-import Routing from "./Routing";
-import Header from "./Header"
-import {Provider as HeaderProvider} from "./Header/provider"
+import Routing from "./components/Routing";
+import Header from "./components/Header"
 
 export default function App() {
-    return <HeaderProvider><Header /><Routing /></HeaderProvider>
+    return <><Header /><Routing /></>
 }

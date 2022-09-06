@@ -17,7 +17,7 @@ export default function TVSeriesDetails() {
             <div className={"details-overview"}>
                 <div className={"details-title"}>
                     <h2>{data.name}</h2>
-                    <WishlistButton className={"wishlist"} id={data.id} type={"/details/tv"} />
+                    <WishlistButton className={"wishlist"} id={data.id} type={"tv"} />
                 </div>
                 <h3>{data.overview}</h3>
             </div>

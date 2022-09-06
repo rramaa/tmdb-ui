@@ -1,7 +1,7 @@
 import App from "../src"
 import {renderToString} from "react-dom/server"
 import {StaticRouter} from "react-router-dom/server";
-import {FetcherServerProvider} from "../src/Fetcher";
+import {FetcherServerProvider} from "../src/components/Fetcher";
 import IndexView from "./views"
 import nodeFetch from "node-fetch-commonjs"
 

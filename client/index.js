@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client"
 import { BrowserRouter } from "react-router-dom";
 
 import App from "../src"
-import {FetcherClientProvider} from "../src/Fetcher";
+import {FetcherClientProvider} from "../src/components/Fetcher";
 const cssFiles = {
     landing: () => import("../src/styles/landing.scss"),
     details: () => import("../src/styles/details.scss"),
