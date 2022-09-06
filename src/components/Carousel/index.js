@@ -26,7 +26,7 @@ export default function Carousel({items, title}) {
             })
         }, 10000)
         return () => clearInterval(intervalId)
-    }, [updateTranslate])
+    }, [updateTranslate, items.length])
     return (
         <div className={"carousel"}>
             <h3>{title}</h3>

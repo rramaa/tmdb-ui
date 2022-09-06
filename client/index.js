@@ -13,9 +13,7 @@ const cssFiles = {
 function Application() {
     React.useEffect(() => {
         Object.entries(cssFiles).filter(([name]) => {
-            if(window.__LOADED_CSS__.indexOf(name) === -1) {
-                return true
-            }
+            return window.__LOADED_CSS__.indexOf(name) === -1
         }).map(([_, getter]) => getter())
     }, [])
     return (
