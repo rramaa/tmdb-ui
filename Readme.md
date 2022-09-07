@@ -32,7 +32,7 @@ This project uses `eslint` and `prettier`. After making the changes, run `yarn s
 3. The cached data is used by the FetchProvider to maintain the cache. This helps in a synchronous hydration of the UI. More details on this in the Fetcher section below
 4. The critical CSS information os used by the client code to lazily fetch the remaining CSS files so that client side application can work correctly.
 5. The rest of the application is hydrated using `ReactDOM.hydrateRoot` method.
-##Fetcher
+###Fetcher
 A lightweight api framework is designed in this project to make api calls, cache the data and transfer the data context from server to client.
 
 The core requirements of the framework is that the hook should be usable in the same way on both server and client. There should also be a way to pre-populate the cache so that the component may be able to render synchronously. This is needed in case of SSR and rehydration. There should also be a way to render something's on the client side only(Lazy loading)
@@ -42,7 +42,7 @@ This is achieved using React's Provider-Context feature. The Provider is injecte
 In the server side, the cache object is modified and a promise is inserted inside the object. The idea is to fulfill the promises and make the calls again the cache warmed this time. Since the re-rendering is done, it is expected that the data requested by the React components would remain the same and would be found in the cache this time. All the calls are executed parallely, and it is expected that the components would not be making serial calls.
 
 In the client side, the same cache is used as an input to the client FetcherProvider. So while hydrating the UI on the client, the cache would hit each time the calls are made by the React components while they are being hydrated.
-##File Structure
+###File Structure
 ```
 /
     client/
@@ -60,3 +60,10 @@ In the client side, the same cache is used as an input to the client FetcherProv
         styles/
             /* Styles entrypoints */
 ```
+
+##Enhancements planned
+1. Error handling is not taken care of. If the api fails then error page would not be seen by the user. Need to implement this feature
+2. Need to think of a better way of handling the loading of CSS. Ideally CSS modules would be better and webpack would automatically handle the CSS part
+3. Unit Testing is not present. Need to add the unit testing.
+4. Currently, serial calls in the component is not supported. SSR would not work as expected.
+5. Need to create another webpack config for production mode optimisations. It would not have the dev server and output the built files in a directory. That directory can be deployed to a webserver. Would have to add support of a public path.
