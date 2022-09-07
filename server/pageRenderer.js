@@ -6,11 +6,10 @@ import IndexView from "./views";
 import nodeFetch from "node-fetch-commonjs";
 
 export async function renderMarkup(path) {
-  const routerContext = {};
   const apiCache = {};
   const renderTree = (
     <FetcherServerProvider fetcher={nodeFetch} cache={apiCache}>
-      <StaticRouter location={path} context={routerContext}>
+      <StaticRouter location={path}>
         <App />
       </StaticRouter>
     </FetcherServerProvider>
@@ -20,7 +19,7 @@ export async function renderMarkup(path) {
   return {
     markup: renderToString(
       <FetcherServerProvider fetcher={nodeFetch} cache={apiCache}>
-        <StaticRouter location={path} context={routerContext}>
+        <StaticRouter location={path}>
           <App />
         </StaticRouter>
       </FetcherServerProvider>
