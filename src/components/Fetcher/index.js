@@ -2,6 +2,16 @@ import React from "react";
 const fetcherContext = React.createContext();
 export const useFetcher = () => React.useContext(fetcherContext);
 
+function responseParser(res) {
+  if(res.status >= 401) {
+    throw new Error("Bad api key!")
+  } else if(res.status >= 500) {
+    throw new Error("Internal Server error")
+  } else {
+    return res.json()
+  }
+}
+
 export function FetcherClientProvider({ cache, children }) {
   let [apiCache, updateCache] = React.useState(cache);
   function fetchApi(api) {
@@ -19,10 +29,13 @@ export function FetcherClientProvider({ cache, children }) {
           Authorization: `Bearer ${window.API_TOKEN}`,
         },
       })
-      .then((v) => v.json())
+        .then(responseParser)
       .then((data) =>
         updateCache((prevCache) => ({ ...prevCache, [cacheKey]: data }))
-      );
+      )
+      .catch((e) => {
+        console.error(e);
+      });
     return {
       loading: true,
       data: null,
@@ -56,8 +69,11 @@ export function FetcherServerProvider({ children, cache, fetcher }) {
         Authorization: `Bearer ${process.env.API_TOKEN}`,
       },
     })
-      .then((v) => v.json())
-      .then((data) => (cache[cacheKey] = data));
+      .then(responseParser)
+      .then((data) => (cache[cacheKey] = data))
+      .catch((e) => {
+        console.error(e);
+      });
     return {
       loading: !cache[cacheKey],
       data: cache[cacheKey],
